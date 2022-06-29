@@ -20,20 +20,4 @@ const startServer = (port, ...handlers) => {
   runServer(port, router);
 };
 
-const homeHandler = (request, response) => {
-  if (request.url.pathname === '/home') {
-    response.end('ok');
-    return true;
-  }
-
-  return false;
-};
-
-const notFoundHandler = (request, response) => {
-  response.statusCode = 404;
-  response.end('Not found');
-  return true;
-};
-
-startServer(9090, homeHandler, notFoundHandler);
 module.exports = { startServer };
