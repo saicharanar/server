@@ -36,3 +36,4 @@ const notFoundHandler = (request, response) => {
 };
 
 startServer(9090, homeHandler, notFoundHandler);
+module.exports = { startServer };
