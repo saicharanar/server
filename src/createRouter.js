@@ -1,4 +1,5 @@
-const { parseQueryParams } = require('./parseSearchParams');
+const { parseBodyParams } = require('./parseBodyParams');
+const { parseQueryParams } = require('./parseQueryParams');
 
 const createNext = (handlers) => {
   let index = -1;
@@ -14,7 +15,7 @@ const createNext = (handlers) => {
 };
 
 const createRouter = (handlers) => {
-  const allHandlers = [parseQueryParams, ...handlers];
+  const allHandlers = [parseBodyParams, parseQueryParams, ...handlers];
   return (req, res) => {
     const next = createNext(allHandlers);
     next(req, res);

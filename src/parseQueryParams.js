@@ -1,11 +1,8 @@
+const { parseParams } = require('./parseParams');
+
 const parseQueryParams = (request, response, next) => {
   const searchParams = request.url.searchParams.entries();
-
-  const queryParams = {};
-  for (const [key, value] of searchParams) {
-    queryParams[key] = value;
-  }
-
+  const queryParams = parseParams(searchParams);
   request.queryParams = queryParams;
   next();
 };
