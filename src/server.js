@@ -15,9 +15,26 @@ const runServer = (port, router) => {
   });
 };
 
+const asyncHandler = (req, res, next) => {
+  const pathname = req.url.pathname;
+  if (pathname === '/time') {
+    setTimeout(() => {
+      res.end('time');
+    }, 5000);
+    return;
+  }
+  next();
+};
+
+const notFoundHandler = (req, res) => {
+  res.end('not found');
+};
+
 const startServer = (port, ...handlers) => {
   const router = createRouter(handlers);
   runServer(port, router);
 };
+
+startServer(8000, asyncHandler, notFoundHandler);
 
 module.exports = { startServer };

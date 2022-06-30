@@ -1,4 +1,4 @@
-const parseSearchParams = (request, response) => {
+const parseQueryParams = (request, response, next) => {
   const searchParams = request.url.searchParams.entries();
 
   const queryParams = {};
@@ -7,7 +7,7 @@ const parseSearchParams = (request, response) => {
   }
 
   request.queryParams = queryParams;
-  return false;
+  next();
 };
 
-module.exports = { parseSearchParams };
+module.exports = { parseQueryParams };
