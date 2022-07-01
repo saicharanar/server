@@ -15,7 +15,7 @@ const runServer = (port, router) => {
   });
 };
 
-const startServer = (port, ...handlers) => {
+const startServer = (port, handlers) => {
   const router = createRouter(handlers);
   runServer(port, router);
 };
