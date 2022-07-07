@@ -30,17 +30,15 @@ want to pass it to the next handler.
 
 # Available Handlers
 
-```
-
+```js
 const { fileHandler } = require('server');
 // fileHandler takes config of `fileOptions: {defaultFile :'fileForSlash', path: 'path of the folder you want to serve from}`
 // fileHandler(config);
 
 const { injectSessions } = require('server');
 // Injects the session related to cookies in request.
-injectSessions() // pass ongoing sessions.
+injectSessions(); // pass ongoing sessions.
 
 const { injectCookies } = require('server');
 // Reads and injects to cookies in request.
-
 ```
