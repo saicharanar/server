@@ -19,6 +19,7 @@ const fileHandler = (config) => {
     fs.readFile(file, (err, data) => {
       if (err) {
         next();
+        return;
       }
 
       response.setHeader('Content-type', contentType);

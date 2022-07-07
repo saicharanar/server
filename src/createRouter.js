@@ -3,15 +3,14 @@ const { parseQueryParams } = require('./parseQueryParams');
 
 const createNext = (handlers) => {
   let index = -1;
-  const nextHandler = (req, res) => {
+  const callNextHandler = (req, res) => {
     index++;
     const currentHandler = handlers[index];
     if (currentHandler) {
-      currentHandler(req, res, () => nextHandler(req, res));
+      currentHandler(req, res, () => callNextHandler(req, res));
     }
   };
-
-  return nextHandler;
+  return callNextHandler;
 };
 
 const createRouter = (handlers) => {
@@ -22,4 +21,4 @@ const createRouter = (handlers) => {
   };
 };
 
-exports.createRouter = createRouter;
+module.exports = { createRouter };

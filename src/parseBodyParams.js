@@ -1,19 +1,21 @@
 const { parseParams } = require('./parseParams');
 
-const parseBodyParams = (req, res, next) => {
-  if (req.method !== 'POST') {
-    next();
-  }
+const isURLEncoded = (headers) => {
+  return headers['content-type'] === 'application/x-www-form-urlencoded';
+};
 
-  let body = '';
+const parseBodyParams = (req, res, next) => {
+  let rawBody = '';
   req.on('data', (chunk) => {
-    body += chunk;
+    rawBody += chunk.toString();
   });
 
   req.on('end', () => {
-    const params = new URLSearchParams(body);
-    const bodyParams = parseParams(params);
-    req.bodyParams = bodyParams;
+    if (isURLEncoded(req.headers)) {
+      const params = new URLSearchParams(rawBody);
+      const bodyParams = parseParams(params);
+      req.bodyParams = bodyParams;
+    }
     next();
   });
 };
