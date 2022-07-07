@@ -31,8 +31,10 @@ want to pass it to the next handler.
 # Available Handlers
 
 ```
-const { logRequest } = require('server');
-// logs each request to console.
+
+const { fileHandler } = require('server');
+// fileHandler takes config of `fileOptions: {defaultFile :'fileForSlash', path: 'path of the folder you want to serve from}`
+// fileHandler(config);
 
 const { injectSessions } = require('server');
 // Injects the session related to cookies in request.
