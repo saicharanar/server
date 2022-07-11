@@ -16,8 +16,8 @@ const parseBodyParams = (req, res, next) => {
       const bodyParams = parseParams(params);
       req.bodyParams = bodyParams;
       console.log(req.bodyParams);
-      next();
     }
+    next();
   });
 };
 
