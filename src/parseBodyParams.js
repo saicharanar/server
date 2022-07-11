@@ -5,19 +5,20 @@ const isURLEncoded = (headers) => {
 };
 
 const parseBodyParams = (req, res, next) => {
-  let rawBody = '';
-  req.on('data', (chunk) => {
-    rawBody += chunk.toString();
-  });
+  if (isURLEncoded(req.headers)) {
+    let rawBody = '';
+    req.on('data', (chunk) => {
+      rawBody += chunk.toString();
+    });
 
-  req.on('end', () => {
-    if (isURLEncoded(req.headers)) {
+    req.on('end', () => {
       const params = new URLSearchParams(rawBody);
       const bodyParams = parseParams(params);
       req.bodyParams = bodyParams;
-    }
+      next();
+    });
     next();
-  });
+  }
 };
 
 module.exports = { parseBodyParams };
