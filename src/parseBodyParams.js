@@ -15,10 +15,10 @@ const parseBodyParams = (req, res, next) => {
       const params = new URLSearchParams(rawBody);
       const bodyParams = parseParams(params);
       req.bodyParams = bodyParams;
+      console.log(req.bodyParams);
       next();
     }
   });
-  next();
 };
 
 module.exports = { parseBodyParams };
