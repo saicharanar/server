@@ -15,8 +15,8 @@ const parseBodyParams = (req, res, next) => {
       const params = new URLSearchParams(rawBody);
       const bodyParams = parseParams(params);
       req.bodyParams = bodyParams || {};
-      next();
     }
+    next();
   });
 };
 
