@@ -5,7 +5,6 @@ const isURLEncoded = (headers) => {
 };
 
 const parseBodyParams = (req, res, next) => {
-  let bodyParams = {};
   let rawBody = '';
   req.on('data', (chunk) => {
     rawBody += chunk.toString();
@@ -14,10 +13,10 @@ const parseBodyParams = (req, res, next) => {
   req.on('end', () => {
     if (isURLEncoded(req.headers)) {
       const params = new URLSearchParams(rawBody);
-      bodyParams = parseParams(params);
+      const bodyParams = parseParams(params);
+      req.bodyParams = bodyParams || {};
+      next();
     }
-    req.bodyParams = bodyParams;
-    next();
   });
 };
 
