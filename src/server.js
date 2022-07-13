@@ -2,7 +2,6 @@ const http = require('http');
 
 const runServer = (port, router) => {
   const server = http.createServer((request, response) => {
-    console.log(request.method, request.url.pathname);
     router(request, response);
   });
 
