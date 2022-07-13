@@ -1,3 +1,4 @@
+const { injectUrl } = require('./injectUrl');
 const { parseQueryParams } = require('./parseQueryParams');
 
 const createNext = (handlers) => {
@@ -13,7 +14,7 @@ const createNext = (handlers) => {
 };
 
 const createRouter = (handlers) => {
-  const allHandlers = [parseQueryParams, ...handlers];
+  const allHandlers = [injectUrl, parseQueryParams, ...handlers];
   return (req, res) => {
     const next = createNext(allHandlers);
     next(req, res);
