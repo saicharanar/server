@@ -1,5 +1,4 @@
 const { injectUrl } = require('./injectUrl');
-const { logRequest } = require('./logRequest');
 const { parseQueryParams } = require('./parseQueryParams');
 
 const createNext = (handlers) => {
@@ -15,7 +14,7 @@ const createNext = (handlers) => {
 };
 
 const createRouter = (handlers) => {
-  const allHandlers = [injectUrl, logRequest, parseQueryParams, ...handlers];
+  const allHandlers = [injectUrl, parseQueryParams, ...handlers];
   return (req, res) => {
     const next = createNext(allHandlers);
     next(req, res);
