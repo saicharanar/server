@@ -1,5 +1,4 @@
-const injectSessions = () => {
-  const sessions = {};
+const injectSessions = (sessions) => {
   return (req, res, next) => {
     req.sessions = sessions;
 
