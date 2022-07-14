@@ -5,6 +5,7 @@ const { injectSessions } = require('./src/injectSessions');
 const { parseBodyParams } = require('./src/parseBodyParams');
 const { startServer } = require('./src/server');
 const { logRequest } = require('./src/logRequest');
+const { injectUsers } = require('./src/injectUsers.js')
 
 module.exports = {
   createRouter,
@@ -14,4 +15,5 @@ module.exports = {
   injectCookies,
   parseBodyParams,
   injectSessions,
+  injectUsers
 };
